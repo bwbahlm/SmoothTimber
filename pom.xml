@@ -186,11 +186,6 @@
             <id>neetgames</id>
             <url>https://nexus.neetgames.com/repository/maven-releases/</url>
         </repository>
-        <!-- uxmClaims Repo -->
-        <repository>
-            <id>uxplima</id>
-            <url>https://repo.inovixi.com/repository/maven-releases/</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -227,7 +222,8 @@
             <groupId>com.github.TechFortress</groupId>
             <artifactId>GriefPrevention</artifactId>
             <version>16.16.0</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libraries/GriefPrevention-16.16.0.api-stub.jar</systemPath>
         </dependency>
 
         <!-- CoreProtect -->
@@ -312,7 +308,8 @@
             <groupId>de.diddiz</groupId>
             <artifactId>logblock</artifactId>
             <version>1.16.1.2-SNAPSHOT</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libraries/LogBlock-1.16.1.2.api-stub.jar</systemPath>
         </dependency>
 
         <!-- mcMMO -->
@@ -346,13 +343,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- uxmClaims -->
-        <dependency>
-            <groupId>com.uxplima.claim</groupId>
-            <artifactId>bukkit-api</artifactId>
-            <version>3.4.6</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- uxmClaims: accessed via reflection, no compile dependency needed -->
 
         <!-- // Compatibilities // -->
 
