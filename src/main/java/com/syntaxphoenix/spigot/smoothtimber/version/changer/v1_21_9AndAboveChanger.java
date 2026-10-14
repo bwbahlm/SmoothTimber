@@ -23,7 +23,12 @@ import com.syntaxphoenix.spigot.smoothtimber.version.manager.WoodType;
 @SupportedVersions({
     "1.21.9",
     "1.21.10",
-    "1.21.11"
+    "1.21.11",
+    "26.1",
+    "26.1.1",
+    "26.1.2",
+    "26.2",
+    "26.3"
 })
 public final class v1_21_9AndAboveChanger implements VersionChanger {
 
@@ -169,6 +174,8 @@ public final class v1_21_9AndAboveChanger implements VersionChanger {
         case PALE:
         case OTHER:
             return true;
+        case POPLAR:
+            return POPLAR_AVAILABLE;
         default:
             return false;
         }
@@ -254,6 +261,27 @@ public final class v1_21_9AndAboveChanger implements VersionChanger {
         case STRIPPED_PALE_OAK_LOG:
         case STRIPPED_PALE_OAK_WOOD:
             return WoodType.PALE;
+        default:
+            return getWoodTypeByName(type.name());
+        }
+    }
+
+    /*
+     * Wood types added after the API version this plugin is compiled against
+     * (e.g. Poplar in 26.3) are resolved by name, so the plugin keeps working on
+     * older servers that don't have these materials.
+     */
+
+    private static final boolean POPLAR_AVAILABLE = Material.getMaterial("POPLAR_LOG") != null;
+
+    private static WoodType getWoodTypeByName(final String name) {
+        switch (name) {
+        case "POPLAR_LOG":
+        case "POPLAR_WOOD":
+        case "POPLAR_FENCE":
+        case "STRIPPED_POPLAR_LOG":
+        case "STRIPPED_POPLAR_WOOD":
+            return WoodType.POPLAR;
         default:
             return WoodType.OTHER;
         }

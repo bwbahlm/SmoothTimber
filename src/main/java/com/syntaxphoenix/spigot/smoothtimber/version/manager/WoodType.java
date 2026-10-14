@@ -13,6 +13,7 @@ public enum WoodType {
     CRIMSON,
     CHERRY,
     PALE,
+    POPLAR,
     OTHER;
 
 }

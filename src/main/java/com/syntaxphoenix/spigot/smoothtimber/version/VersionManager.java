@@ -66,6 +66,10 @@ public final class VersionManager {
         if (highest != null && version.isHigher(highest)) {
             return VersionState.UNTESTED;
         }
+        if (lowest != null && highest != null) {
+            // Within the range of this core but not explicitly listed (e.g. a new hotfix release)
+            return VersionState.UNTESTED;
+        }
         return VersionState.UNSUPPORTED;
     }
 
@@ -101,7 +105,7 @@ public final class VersionManager {
         Objects.requireNonNull(states, "VersionState[] can't be null");
         Version lowest = null;
         for (VersionState state : states) {
-            Version current = getHighest(state);
+            Version current = getLowest(state);
             if (current == null || (lowest != null && !current.isLower(lowest))) {
                 continue;
             }

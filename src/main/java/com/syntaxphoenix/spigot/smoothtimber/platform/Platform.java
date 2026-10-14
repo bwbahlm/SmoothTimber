@@ -32,6 +32,9 @@ public abstract class Platform {
             case v1_21_9Below:
             case v1_21_9AndAbove:
                 // On 1.21+ we can't only use the Regionized Server cause Paper for some reason includes that API now.
+                if ("Folia".equalsIgnoreCase(org.bukkit.Bukkit.getName())) {
+                    return new FoliaPlatform(plugin);
+                }
                 if (ClassCache.getOptionalClass("io.papermc.paper.plugin.configuration.PluginMeta")
                     .filter(clz -> new Reflect(clz).searchMethod("isFolia", "isFoliaSupported").containsMethod("isFolia")).isPresent()) {
                     return new FoliaPlatform(plugin);
